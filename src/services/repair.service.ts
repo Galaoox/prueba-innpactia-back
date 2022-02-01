@@ -1,6 +1,7 @@
 import { Repair } from '../entity/repair';
 import { IRepair } from '../interface/IRepair';
 import { calcPagination } from '../utils/common';
+import { Phone } from '../entity/phone';
 
 
 export const getListRepairs = async (options: { limit: number, page: number, phoneId: number }) => {
@@ -8,7 +9,9 @@ export const getListRepairs = async (options: { limit: number, page: number, pho
         take: options.limit,
         skip: (Number(options.page) - 1) * Number(options.limit),
         where: {
-            phoneId: options.phoneId
+            phone: {
+                id: options.phoneId,
+            }
         },
     })
 
@@ -35,8 +38,13 @@ export const getRepair = async (id: number) => {
 
 export const createRepair = async (data: IRepair) => {
     try {
-        const repair = await Repair.create(data);
-        repair.save();
+        const repair = new Repair();
+        repair.description = data.description;
+        const phone = await Phone.findOne(data.phoneId);
+        if (!phone) throw new Error("No existe el telefono");
+        repair.phone = phone;
+        console.log(phone);
+        await repair.save();
         return {
             error: false
         }

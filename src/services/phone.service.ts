@@ -48,11 +48,10 @@ export const createPhone = async (data: IPhone) => {
         phone.description = data.description;
         phone.model = data.model;
         const customer = await Customer.findOne(data.customerId);
-        if (customer) {
-            phone.customer = customer;
-            await phone.save();
+        if (!customer) throw new Error("No existe el cliente");
 
-        }
+        phone.customer = customer;
+        await phone.save();
         return {
             error: false
         }

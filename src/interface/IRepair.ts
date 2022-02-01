@@ -1,10 +1,10 @@
 import { IPhone } from './IPhone';
 export interface IRepair {
-    id: number;
+    id?: number;
     description: string;
-    phone: IPhone;
-    created_at: Date;
-    updated_at: Date;
-    deletedDate: Date;
-    phoneId: number;
+    phone?: IPhone;
+    created_at?: Date;
+    updated_at?: Date;
+    deletedDate?: Date;
+    phoneId?: number;
 }
