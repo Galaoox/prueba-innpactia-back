@@ -7,4 +7,6 @@ export interface ICustomer {
     created_at?: Date;
     updated_at?: Date;
     deletedData?: Date;
+    address: string;
+    numberPhone: string;
 }

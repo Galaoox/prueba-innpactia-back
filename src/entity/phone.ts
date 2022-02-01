@@ -7,10 +7,6 @@ export class Phone extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-
-    @Column()
-    date: Date;
-
     @Column({
         length: 100
     })

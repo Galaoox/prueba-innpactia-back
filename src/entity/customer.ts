@@ -17,6 +17,16 @@ export class Customer extends BaseEntity {
     })
     lastname: string;
 
+    @Column({
+        length: 150
+    })
+    address: string;
+
+    @Column({
+        length: 15
+    })
+    numberPhone: string;
+
     @OneToMany(type => Phone, phone => phone.customer)
     phones: Phone[];
 

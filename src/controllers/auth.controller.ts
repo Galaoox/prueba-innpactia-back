@@ -1,7 +1,4 @@
 import { Request, Response } from 'express';
-import { User } from '../entity/user';
-import { encrypt, comparePassword } from '../utils/bcrypt';
-import { createToken } from '../utils/common';
 import { loginUser, registerUser } from '../services/auth.service';
 
 
