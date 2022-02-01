@@ -1,5 +1,4 @@
 import express from 'express';
-import passport from 'passport';
 import morgan from 'morgan';
 import cors from 'cors';
 import indexRoutes from './routes';

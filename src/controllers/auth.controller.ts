@@ -17,7 +17,7 @@ export const login = async (req: Request, res: Response) => {
     }
 };
 
-export const getinfotoken = async (req: Request, res: Response) => {
+export const getinfotoken = async (req: any, res: Response) => {
     try {
         const user = req.user;
         return res.json(user);

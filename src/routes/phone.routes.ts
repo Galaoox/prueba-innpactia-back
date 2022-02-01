@@ -1,4 +1,3 @@
-import passport from "passport";
 import { Router } from "express";
 import { create, getList, getOne, remove, update } from '../controllers/phone.controller';
 

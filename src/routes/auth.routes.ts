@@ -1,4 +1,3 @@
-import passport from "passport";
 import { Router } from "express";
 import { login, register, getinfotoken } from '../controllers/auth.controller';
 import { verifyToken } from '../middlewares/auth.middleware';
