@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, JoinColumn } from 'typeorm';
 import { Phone } from './phone';
 
 @Entity()
@@ -7,7 +7,8 @@ export class Repair extends BaseEntity {
     id: number;
 
     @Column({
-        length: 200
+        length: 200,
+        nullable: false
     })
     description: string
 

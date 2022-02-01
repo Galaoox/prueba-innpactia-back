@@ -8,22 +8,26 @@ export class Customer extends BaseEntity {
 
 
     @Column({
-        length: 100
+        length: 100,
+        nullable: false
     })
     name: string;
 
     @Column({
-        length: 100
+        length: 100,
+        nullable: false
     })
     lastname: string;
 
     @Column({
-        length: 150
+        length: 150,
+        nullable: false
     })
     address: string;
 
     @Column({
-        length: 15
+        length: 15,
+        nullable: false
     })
     numberPhone: string;
 

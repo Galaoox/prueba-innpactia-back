@@ -7,12 +7,14 @@ export class User extends BaseEntity {
 
 
     @Column({
-        length: 50
+        length: 50,
+        nullable: false
     })
     username: string;
 
     @Column({
-        length: 100
+        length: 100,
+        nullable: false
     })
     password: string;
 

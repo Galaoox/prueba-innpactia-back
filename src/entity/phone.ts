@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany, JoinColumn } from 'typeorm';
 import { Customer } from './customer';
 import { Repair } from './repair';
 
@@ -8,12 +8,14 @@ export class Phone extends BaseEntity {
     id: number;
 
     @Column({
-        length: 100
+        length: 100,
+        nullable: false
     })
     model: string;
 
     @Column({
-        length: 200
+        length: 200,
+        nullable: false
     })
     description: string;
 

@@ -1,6 +1,8 @@
+import { IsNull, Not } from 'typeorm';
 import { Phone } from '../entity/phone';
 import { IPhone } from '../interface/IPhone';
 import { calcPagination } from '../utils/common';
+import { Customer } from '../entity/customer';
 
 
 export const getListPhones = async (options: { limit: number, page: number, customerId: number }) => {
@@ -8,8 +10,11 @@ export const getListPhones = async (options: { limit: number, page: number, cust
         take: options.limit,
         skip: (Number(options.page) - 1) * Number(options.limit),
         where: {
-            customerId: options.customerId
-        }
+            customer: {
+                id: options.customerId,
+            }
+        },
+        select: ['id', 'description', 'model', 'created_at']
     })
 
 
@@ -39,8 +44,15 @@ export const getPhone = async (id: number) => {
 
 export const createPhone = async (data: IPhone) => {
     try {
-        const phone = await Phone.create(data);
-        phone.save();
+        const phone = new Phone;
+        phone.description = data.description;
+        phone.model = data.model;
+        const customer = await Customer.findOne(data.customerId);
+        if (customer) {
+            phone.customer = customer;
+            await phone.save();
+
+        }
         return {
             error: false
         }
