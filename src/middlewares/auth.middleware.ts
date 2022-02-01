@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { JWT_KEY } from '../config/env';
 
 
-export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+export const verifyToken = (req: any, res: Response, next: NextFunction) => {
     const token = req.headers["authorization"];
 
     if (!token) {
