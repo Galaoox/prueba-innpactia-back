@@ -4,7 +4,9 @@ import { JWT_KEY } from '../config/env';
 import { Response } from 'express';
 
 export const createToken = (user: IUser) => {
-    return jwt.sign({ id: user.id, username: user.username }, JWT_KEY);
+    return jwt.sign({ id: user.id, username: user.username }, JWT_KEY, {
+        expiresIn: '1h'
+    });
 }
 
 export const validateResult = (result: any, res: Response) => {
