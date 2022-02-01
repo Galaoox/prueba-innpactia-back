@@ -1,6 +1,6 @@
 import app from './app';
-import { connectDB } from './db';
-import { PORT } from './config';
+import { connectDB } from './config/db';
+import { PORT } from './config/env';
 
 async function main() {
     await connectDB();

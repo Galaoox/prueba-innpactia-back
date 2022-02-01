@@ -1,4 +1,4 @@
-# API graphql-typeorm-crud
+# API prueba-innpactia-front
 
 Api rest of users that allow create, update, get and delete users with Graphql
 
@@ -17,11 +17,11 @@ Install graphql-typeorm-crud with yarn
 
 ## Acknowledgements
 
-- [Github Repo](https://github.com/Galaoox/graphql-typeorm-crud)
+-   [Github Repo](https://github.com/Galaoox/graphql-typeorm-crud)
 
 ## Authors
 
-- [@Galaoox](https://github.com/Galaoox)
+-   [@Galaoox](https://github.com/Galaoox)
 
 ## License
 
