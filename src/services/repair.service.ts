@@ -24,6 +24,7 @@ export const getListRepairs = async (options: { limit: number, page: number, pho
 export const getRepair = async (id: number) => {
     try {
         const repair = await Repair.findOne(id);
+        if (!repair) throw new Error("No existe el registro de reparacion");
         return {
             error: false,
             data: repair

@@ -26,10 +26,12 @@ export const getListPhones = async (options: { limit: number, page: number, cust
 
 export const getPhone = async (id: number) => {
     try {
+        console.log(id);
         const phone = await Phone.findOne({
             where: { id },
             relations: ['repairs']
         });
+        if (!phone) throw new Error("No existe el telefono");
         return {
             error: false,
             data: phone

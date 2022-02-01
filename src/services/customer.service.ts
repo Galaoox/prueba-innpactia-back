@@ -23,6 +23,7 @@ export const getCustomer = async (id: number) => {
             where: { id },
             relations: ['phones']
         });
+        if (!customer) throw new Error("No existe el cliente");
         return {
             error: false,
             data: customer
