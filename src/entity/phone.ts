@@ -11,6 +11,16 @@ export class Phone extends BaseEntity {
     @Column()
     date: Date;
 
+    @Column({
+        length: 100
+    })
+    model: string;
+
+    @Column({
+        length: 200
+    })
+    description: string;
+
     @ManyToOne(type => Customer, customer => customer.phones)
     customer: Customer;
 
