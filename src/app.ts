@@ -14,6 +14,6 @@ app.use(express.json());
 app.use(passport.initialize());
 passport.use(passportMiddleware);
 
-app.use(indexRoutes);
+app.use('/api', indexRoutes);
 
 export default app;

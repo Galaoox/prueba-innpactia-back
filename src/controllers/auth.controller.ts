@@ -2,27 +2,13 @@ import { Request, Response } from 'express';
 import { User } from '../entity/user';
 import { encrypt, comparePassword } from '../utils/bcrypt';
 import { createToken } from '../utils/common';
+import { loginUser, registerUser } from '../services/auth.service';
 
 
 export const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
-    const user = await User.findOne({ username });
-    if (user) {
-        if (await comparePassword(password, user.password)) {
-            res.json({
-                msg: "Inicio sessión correctamente",
-                token: createToken(user),
-            });
-        } else {
-            res.status(400).json({ msg: "La contraseña es incorrecta" });
-        }
-    } else {
-        res
-            .status(400)
-            .json({
-                mensaje: "No se ha encontrado ninguna cuenta asociada a ese usuario",
-            });
-    }
+    const result = await loginUser({ username, password });
+    return res.status(result.error ? 400 : 200).json(result);
 };
 
 export const getinfotoken = async (req: Request, res: Response) => {
@@ -31,17 +17,11 @@ export const getinfotoken = async (req: Request, res: Response) => {
 };
 
 export const register = async (req: Request, res: Response) => {
-    try {
-        const { password, username } = req.body;
-        const data = { username, password: await encrypt(password) };
-        const user = await User.create(data);
-        const token = createToken({ ...data, id: user.id });
-        return res.status(201).json({
-            msg: "Usuario creado exitosamente",
-            token,
-        });
-    } catch (error) {
-        console.log(error);
-    }
+    const { password, username } = req.body;
+    const result = await registerUser({ username, password });
+    return res.status(result.error ? 400 : 200).json(result);
 };
+
+
+
 
