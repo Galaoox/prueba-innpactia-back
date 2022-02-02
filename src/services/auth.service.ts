@@ -14,6 +14,7 @@ export const loginUser = async ({ username, password }: { username: string; pass
         return {
             error: false,
             token: createToken(user),
+            message: "Inicio sesion exitosamente"
         }
     } catch (error: any) {
         return {
@@ -33,7 +34,8 @@ export const registerUser = async ({ username, password }: { username: string; p
         const token = createToken({ ...data, id: user.id });
         return {
             token,
-            error: false
+            error: false,
+            message: "Registrado exitosamente"
         }
     } catch (error: any) {
         return {

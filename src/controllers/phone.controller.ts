@@ -68,7 +68,6 @@ export const update = async (req: Request, res: Response) => {
     try {
         const phone: IPhone = {
             description: req.body.description,
-            customerId: req.body.customerId,
             model: req.body.model
         }
         const result = await updatePhone(phone, Number(req.params.id));

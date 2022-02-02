@@ -9,5 +9,5 @@ export interface IPhone {
     created_at?: Date;
     updated_at?: Date;
     deletedDate?: Date;
-    customerId: number;
+    customerId?: number;
 }
