@@ -5,13 +5,13 @@ import { IUser } from '../interface/IUser';
 import { encrypt } from '../utils/bcrypt';
 
 
-export const getListUsers = async (options: { limit: string, page: string, userId: string }) => {
+export const getListUsers = async (options: { limit: string, page: string, id: string }) => {
     try {
         const [results, total] = await User.findAndCount({
             take: Number(options.limit),
             skip: (Number(options.page) - 1) * Number(options.limit),
             where: {
-                id: Not(options.userId)
+                id: Not(Number(options.id))
             }
         })
 
