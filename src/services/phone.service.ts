@@ -6,21 +6,29 @@ import { Customer } from '../entity/customer';
 
 
 export const getListPhones = async (options: { limit: number, page: number, customerId: number }) => {
-    const [results, total] = await Phone.findAndCount({
-        take: options.limit,
-        skip: (Number(options.page) - 1) * Number(options.limit),
-        where: {
-            customer: {
-                id: options.customerId,
-            }
-        },
-        select: ['id', 'description', 'model', 'created_at']
-    })
+    try {
+        const [results, total] = await Phone.findAndCount({
+            take: options.limit,
+            skip: (Number(options.page) - 1) * Number(options.limit),
+            where: {
+                customer: {
+                    id: options.customerId,
+                }
+            },
+            select: ['id', 'description', 'model', 'created_at']
+        })
 
 
-    return {
-        data: results,
-        info: calcPagination(total, Number(options.limit), Number(options.page))
+        return {
+            data: results,
+            info: calcPagination(total, Number(options.limit), Number(options.page))
+        }
+    } catch (error) {
+        console.log(error);
+        return {
+            error: true,
+            message: "Ha ocurrido un error"
+        }
     }
 }
 
@@ -37,6 +45,7 @@ export const getPhone = async (id: number) => {
             data: phone
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
             message: error.message
@@ -58,6 +67,7 @@ export const createPhone = async (data: IPhone) => {
             error: false
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
             message: error.message
@@ -73,6 +83,7 @@ export const deletePhone = async (id: number) => {
             error: false
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
             message: error.message
@@ -87,6 +98,7 @@ export const updatePhone = async (data: IPhone, id: number) => {
             error: false
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
             message: error.message

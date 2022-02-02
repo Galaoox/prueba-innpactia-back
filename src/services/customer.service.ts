@@ -4,14 +4,22 @@ import { calcPagination } from '../utils/common';
 
 
 export const getListCustomers = async (options: { limit: string, page: string }) => {
-    const [results, total] = await Customer.findAndCount({
-        take: Number(options.limit),
-        skip: (Number(options.page) - 1) * Number(options.limit),
-    })
+    try {
+        const [results, total] = await Customer.findAndCount({
+            take: Number(options.limit),
+            skip: (Number(options.page) - 1) * Number(options.limit),
+        })
 
-    return {
-        data: results,
-        info: calcPagination(total, Number(options.limit), Number(options.page))
+        return {
+            data: results,
+            info: calcPagination(total, Number(options.limit), Number(options.page))
+        }
+    } catch (error) {
+        console.log(error);
+        return {
+            error: true,
+            message: 'Ha ocurrido un error'
+        }
     }
 }
 
@@ -29,9 +37,10 @@ export const getCustomer = async (id: number) => {
             data: customer
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
-            message: error.message
+            message: 'Ha ocurrido un error'
         }
     }
 }
@@ -44,9 +53,10 @@ export const createCustomer = async (data: ICustomer) => {
             error: false
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
-            message: error.message
+            message: 'Ha ocurrido un error'
         }
     }
 }
@@ -59,9 +69,10 @@ export const deleteCustomer = async (id: number) => {
             error: false
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
-            message: error.message
+            message: 'Ha ocurrido un error'
         }
     }
 }
@@ -75,7 +86,7 @@ export const updateCustomer = async (data: ICustomer, id: number) => {
     } catch (error: any) {
         return {
             error: true,
-            message: error.message
+            message: 'Ha ocurrido un error'
         }
     }
 }

@@ -17,9 +17,10 @@ export const loginUser = async ({ username, password }: { username: string; pass
             message: "Inicio sesion exitosamente"
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
-            message: error.message
+            message: error?.message ? error?.message : 'Ha ocurrido un error'
         }
     }
 }
@@ -31,16 +32,15 @@ export const registerUser = async ({ username, password }: { username: string; p
         if (usernameExist) throw new Error("El usuario ya se encuentra en uso");
         const user = await User.create(data);
         await user.save();
-        const token = createToken({ ...data, id: user.id });
         return {
-            token,
             error: false,
             message: "Registrado exitosamente"
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
-            message: error.message
+            message: error?.message ? error?.message : 'Ha ocurrido un error'
         }
     }
 

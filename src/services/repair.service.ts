@@ -5,20 +5,32 @@ import { Phone } from '../entity/phone';
 
 
 export const getListRepairs = async (options: { limit: number, page: number, phoneId: number }) => {
-    const [results, total] = await Repair.findAndCount({
-        take: options.limit,
-        skip: (Number(options.page) - 1) * Number(options.limit),
-        where: {
-            phone: {
-                id: options.phoneId,
+    try {
+        const [results, total] = await Repair.findAndCount({
+            take: options.limit,
+            skip: (Number(options.page) - 1) * Number(options.limit),
+            where: {
+                phone: {
+                    id: options.phoneId,
+                }
+            },
+            order: {
+                created_at: "DESC"
             }
-        },
-    })
+        })
 
-    return {
-        data: results,
-        info: calcPagination(total, Number(options.limit), Number(options.page))
+        return {
+            data: results,
+            info: calcPagination(total, Number(options.limit), Number(options.page))
+        }
+    } catch (error) {
+        console.log(error);
+        return {
+            error: true,
+            message: "Ha ocurrido un error"
+        }
     }
+
 }
 
 export const getRepair = async (id: number) => {
@@ -30,9 +42,10 @@ export const getRepair = async (id: number) => {
             data: repair
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
-            message: error.message
+            message: "Ha ocurrido un error"
         }
     }
 }
@@ -50,9 +63,10 @@ export const createRepair = async (data: IRepair) => {
             error: false
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
-            message: error.message
+            message: "Ha ocurrido un error"
         }
     }
 }
@@ -79,9 +93,10 @@ export const updateRepair = async (data: IRepair, id: number) => {
             error: false
         }
     } catch (error: any) {
+        console.log(error);
         return {
             error: true,
-            message: error.message
+            message: "Ha ocurrido un error"
         }
     }
 }

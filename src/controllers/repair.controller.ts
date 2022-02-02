@@ -10,7 +10,6 @@ export const create = async (req: Request, res: Response) => {
             description: req.body.description,
             phoneId: req.body.phoneId,
         }
-        console.log(phone);
         const result = await createRepair(phone);
         return validateResult(result, res);
     } catch (error: any) {
