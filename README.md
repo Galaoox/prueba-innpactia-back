@@ -1,25 +1,29 @@
 # API prueba-innpactia-front
 
-Api rest of users that allow create, update, get and delete users with Graphql
+## Instalacion
 
-## Tech Stack
-
-**Server:** Node, Express, Graphql, TypeORM and MySQL
-
-## Installation
-
-Install graphql-typeorm-crud with yarn
+Pasos para la instalacion de dependencias:
 
 ```bash
-  cd graphql-typeorm-crud
+  cd prueba-innpactia-back
   yarn install
 ```
 
-## Acknowledgements
+# Ejecucion
 
--   [Github Repo](https://github.com/Galaoox/graphql-typeorm-crud)
+Antes de ejecutar el proyecto se debe tener un archivo .env para poder indicarle a la aplicacion por ejemplo el nombre de la base de datos o el puerto.
 
-## Authors
+Para eso esta un archivo llamado ".env.example" solamente es quitar el ".example" y ya podra usar la aplicacion
+
+Pasos para ejecutar el proyecto:
+
+```bash
+  cd graphql-typeorm-crud
+  yarn build
+  yarn start
+```
+
+## Autor
 
 -   [@Galaoox](https://github.com/Galaoox)
 
