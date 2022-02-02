@@ -18,7 +18,7 @@ Para eso esta un archivo llamado ".env.example" solamente es quitar el ".example
 Pasos para ejecutar el proyecto:
 
 ```bash
-  cd graphql-typeorm-crud
+  cd prueba-innpactia-back
   yarn build
   yarn start
 ```
