@@ -25,23 +25,3 @@ export const loginUser = async ({ username, password }: { username: string; pass
     }
 }
 
-export const registerUser = async ({ username, password }: { username: string; password: string }) => {
-    try {
-        const data = { username, password: await encrypt(password) };
-        const usernameExist = await User.findOne({ username });
-        if (usernameExist) throw new Error("El usuario ya se encuentra en uso");
-        const user = await User.create(data);
-        await user.save();
-        return {
-            error: false,
-            message: "Registrado exitosamente"
-        }
-    } catch (error: any) {
-        console.log(error);
-        return {
-            error: true,
-            message: error?.message ? error?.message : 'Ha ocurrido un error'
-        }
-    }
-
-}
